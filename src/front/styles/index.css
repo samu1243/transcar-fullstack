@@ -1,3 +1,22 @@
 /* 
     General Styles used on every website (Don't Repeat Yourself)
 */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: "EncodeSans";
+  src: url(../fonts/EncodeSansCondensed-Regular.woff);
+  font-display: swap;
+}
+
+body,
+html {
+  font-family: "EncodeSans" !important;
+  background-color: #ebeaea !important;
+}
+
+li {
+  list-style-type: none;
+}

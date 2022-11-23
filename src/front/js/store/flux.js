@@ -2,6 +2,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
 			message: null,
+			token: null,
 			demo: [
 				{
 					title: "FIRST",
@@ -19,6 +20,28 @@ const getState = ({ getStore, getActions, setStore }) => {
 			// Use getActions to call a function within a fuction
 			exampleFunction: () => {
 				getActions().changeColor(0, "green");
+			},
+			
+			getToken: () => {
+				const token = sessionStorage.getItem("token");
+				if (token && token != "" && token != undefined)
+				  setStore({ token: token });
+			  },
+			  
+			login: async (data) => {
+				let response = await fetch(
+					process.env.BACKEND_URL + "/api/login",
+				  {
+					method: "POST",
+					headers: { "Content-Type": "application/json" },
+					body: JSON.stringify(data),
+				  }
+				);
+				if (response.ok) {
+				  let data = await response.json();
+				  sessionStorage.setItem("token", data.token);
+				  return true;
+				} else return false;
 			},
 
 			getMessage: async () => {

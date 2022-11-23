@@ -1,0 +1,12 @@
+.button-image {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+.button-div {
+  transition: background-color 150ms linear;
+}
+
+.button-div:hover {
+  background-color: #dadada !important;
+}
