@@ -5,15 +5,17 @@
 @tailwind components;
 @tailwind utilities;
 
-@font-face {
-  font-family: "EncodeSans";
-  src: url(../fonts/EncodeSansCondensed-Regular.woff);
+@import url("https://fonts.googleapis.com/css2?family=Encode+Sans+Condensed&display=swap");
+
+/* @font-face {
+  font-family: "Encode Sans Condensed";
+  src: url(../fonts/EncodeSansCondensed-Regular.ttf), format("truetype");
   font-display: swap;
-}
+} */
 
 body,
 html {
-  font-family: "EncodeSans" !important;
+  font-family: "Encode Sans Condensed", sans-serif !important;
   background-color: #ebeaea !important;
 }
 

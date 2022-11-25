@@ -83,7 +83,7 @@ const Navbar = () => {
           className={
             !menu
               ? "hidden"
-              : "sub-menu w-full hidden h-fit sm:flex justify-center items-center pt-2 font-medium bg-[#58978b]"
+              : "sub-menu w-full hidden h-fit sm:flex justify-center items-center py-2 font-medium bg-[#58978b]"
           }
         >
           <ul className="flex gap-10 text-lg text-center  text-white">
