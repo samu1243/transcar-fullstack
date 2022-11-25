@@ -87,15 +87,17 @@ const Login = () => {
                             </a>
                           </div>
                           <div className="flex items-center justify-between pb-6">
+                            <Link to="/signup">
+                              <button
+                                type="button"
+                                className="inline-block px-6 py-2 border-2 border-red-600 text-red-600 font-medium text-xs leading-tight uppercase rounded hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0 transition duration-150 ease-in-out"
+                                data-mdb-ripple="true"
+                                data-mdb-ripple-color="light"
+                              >
+                                Registrarse
+                              </button>
+                            </Link>
                             <p className="mb-0 mr-2">¿No tienes una cuenta?</p>
-                            <button
-                              type="button"
-                              className="inline-block px-6 py-2 border-2 border-red-600 text-red-600 font-medium text-xs leading-tight uppercase rounded hover:bg-black hover:bg-opacity-5 focus:outline-none focus:ring-0 transition duration-150 ease-in-out"
-                              data-mdb-ripple="true"
-                              data-mdb-ripple-color="light"
-                            >
-                              Registrarse
-                            </button>
                           </div>
                         </form>
                       </div>

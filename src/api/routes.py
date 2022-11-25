@@ -37,3 +37,25 @@ def handle_login():
             "token": access_token
         }
         return jsonify(response_body), 200
+
+@api.route('/signup', methods=['POST'])
+def handle_signup():
+
+    data = request.data
+    data_decode = json.loads(data)
+    newUser = User(**data_decode)
+    user = User.query.filter_by(username=newUser.username,password=newUser.password).first()
+    if user is None:
+        db.session.add(newUser)
+        db.session.commit()
+        access_token = create_access_token(identity=newUser.id)
+        response_body = {
+            "message": "Usuario creado con exito",
+            "token":access_token
+        }
+        return jsonify(response_body), 200
+    else :
+        response_body = {
+            "message": "Error, Usuario ya existe"
+        }
+        return jsonify(response_body), 400
