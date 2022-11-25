@@ -1,8 +1,30 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useContext, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import logo from "../../../img/logo-header.png";
+import { Context } from "../../store/appContext";
 
 const Signup = () => {
+  const navigate = useNavigate();
+  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirm, setConfirm] = useState("");
+  const { store, actions } = useContext(Context);
+
+  const handleClick = async () => {
+    let data = {
+      username: username,
+      password: password,
+      email: email,
+      is_active: true,
+    };
+    if (await actions.signup(data)) {
+      navigate("/");
+    } else {
+      alert("Usuario ya existe, intente de nuevo");
+    }
+  };
+
   return (
     <div className="w-full h-full sm:h-screen">
       <div className="">
@@ -32,6 +54,10 @@ const Signup = () => {
                               className="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                               id="exampleFormControlInput1"
                               placeholder="Nombre de Usuario"
+                              value={username}
+                              onChange={(e) => {
+                                setUsername(e.target.value);
+                              }}
                             />
                           </div>
                           <div className="mb-4">
@@ -40,6 +66,10 @@ const Signup = () => {
                               className="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                               id="exampleFormControlInput1"
                               placeholder="Email"
+                              value={email}
+                              onChange={(e) => {
+                                setEmail(e.target.value);
+                              }}
                             />
                           </div>
                           <div className="mb-4">
@@ -48,6 +78,10 @@ const Signup = () => {
                               className="form-control block w-full px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                               id="exampleFormControlInput1"
                               placeholder="Contraseña"
+                              value={password}
+                              onChange={(e) => {
+                                setPassword(e.target.value);
+                              }}
                             />
                           </div>
                           <div className="text-center pt-1 mb-12 pb-1">
@@ -60,6 +94,7 @@ const Signup = () => {
                                 background:
                                   "linear-gradient(to right, #ee7724, #d8363a, #dd3675, #b44593)",
                               }}
+                              onClick={handleClick}
                             >
                               Registrarse
                             </button>

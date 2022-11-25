@@ -44,7 +44,7 @@ def handle_signup():
     data = request.data
     data_decode = json.loads(data)
     newUser = User(**data_decode)
-    user = User.query.filter_by(username=newUser.username,password=newUser.password).first()
+    user = User.query.filter_by(username=newUser.username,password=newUser.password, email=newUser.email, is_active=newUser.is_active).first()
     if user is None:
         db.session.add(newUser)
         db.session.commit()
@@ -59,3 +59,9 @@ def handle_signup():
             "message": "Error, Usuario ya existe"
         }
         return jsonify(response_body), 400
+
+@api.route('/users', methods = ["GET"])
+def getproduct():
+    user = User.query.all()
+    all_users = list(map(lambda x: x.serialize(), user))
+    return jsonify(all_users), 20
